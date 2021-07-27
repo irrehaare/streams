@@ -44,13 +44,10 @@ public class Streams {
 
     // Get the names of all kids under the age of 18
     public static Set<String> getKidNames(List<Person> people) {
-        Set<String> kids = new HashSet<>();
-        for (Person person : people) {
-            if (person.getAge() < 18) {
-                kids.add(person.getName());
-            }
-        }
-        return kids;
+        return people.stream()
+                .filter(maybeKid -> maybeKid.getAge() < 18)
+                .map(Person::getName)
+                .collect(Collectors.toSet());
     }
 
     // Partition these people into adults and kids, you'll need a special collector for this one
