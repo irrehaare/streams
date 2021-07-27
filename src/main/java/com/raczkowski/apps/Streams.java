@@ -64,16 +64,9 @@ public class Streams {
 
     // Return a comma-separated string of all these people's names
     public static String namesToString(List<Person> people) {
-        String label = "Names: ";
-        StringBuilder sb = new StringBuilder(label);
-        for (Person person : people) {
-            if (sb.length() > label.length()) {
-                sb.append(", ");
-            }
-            sb.append(person.getName());
-        }
-        sb.append(".");
-        return sb.toString();
+        return people.stream()
+                .map(Person::getName)
+                .collect(Collectors.joining(", ", "Names: ", "."));
     }
 
 }
