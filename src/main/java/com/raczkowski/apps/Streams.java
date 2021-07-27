@@ -24,13 +24,9 @@ public class Streams {
     }
 
     public static List<String> flattenListOfLists(List<List<String>> collection) {
-        List<String> newCollection = new ArrayList<>();
-        for (List<String> subCollection : collection) {
-            for (String value : subCollection) {
-                newCollection.add(value);
-            }
-        }
-        return newCollection;
+        return collection.stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 
     public static Person getOldestPerson(List<Person> people) {
