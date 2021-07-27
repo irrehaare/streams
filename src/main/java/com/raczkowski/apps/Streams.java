@@ -35,12 +35,11 @@ public class Streams {
                 .orElseThrow();
     }
 
+    // Sum all of the numbers in the list
     public static int calculate(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return numbers.stream()
+                .reduce(Integer::sum)
+                .orElseThrow();
     }
 
     // Get the names of all kids under the age of 18
