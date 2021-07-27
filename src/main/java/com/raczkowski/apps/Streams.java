@@ -3,6 +3,7 @@ package com.raczkowski.apps;
 import com.raczkowski.apps.model.Person;
 
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class Streams {
@@ -14,7 +15,12 @@ public class Streams {
     }
 
     public static int getTotalNumberOfLettersOfNamesLongerThanFive(String... names) {
-        return 0;
+        Supplier<Integer> defaultValue = ()-> 0;
+        return Arrays.stream(names)
+                .map(String::length)
+                .filter(length -> length > 5)
+                .reduce(Integer::sum)
+                .orElseGet(defaultValue);
     }
 
     public static List<String> flattenListOfLists(List<List<String>> collection) {
