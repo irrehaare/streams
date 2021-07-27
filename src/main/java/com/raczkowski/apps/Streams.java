@@ -58,14 +58,8 @@ public class Streams {
 
     // Group these people by nationality
     public static Map<String, List<Person>> groupByNationality(List<Person> people) {
-        Map<String, List<Person>> map = new HashMap<>();
-        for (Person person : people) {
-            if (!map.containsKey(person.getNationality())) {
-                map.put(person.getNationality(), new ArrayList<>());
-            }
-            map.get(person.getNationality()).add(person);
-        }
-        return map;
+        return people.stream()
+                .collect(Collectors.groupingBy(Person::getNationality));
     }
 
     // Return a comma-separated string of all these people's names
