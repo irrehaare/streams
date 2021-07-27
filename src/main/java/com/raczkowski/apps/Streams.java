@@ -3,15 +3,14 @@ package com.raczkowski.apps;
 import com.raczkowski.apps.model.Person;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Streams {
 
     public static Collection<String> mapToUppercase(String... names) {
-        Collection<String> uppercaseNames = new ArrayList<>();
-        for (String name : names) {
-            uppercaseNames.add(name.toUpperCase());
-        }
-        return uppercaseNames;
+        return Arrays.stream(names)
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
     }
 
     public static int getTotalNumberOfLettersOfNamesLongerThanFive(String... names) {
